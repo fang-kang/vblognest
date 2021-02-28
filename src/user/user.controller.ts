@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { UserInterface } from './interface/user.interface';
 import { UserBaseDto, UserUpdateDto } from './dto/user.dto';
 import { UserService } from './user.service';
@@ -84,6 +85,23 @@ export class UserController {
     description: '本次请求请带上token',
   })
   async getUserInfo2(@Req() req): Promise<UserInterface> {
-    return req.user;
+    return await req.user;
+  }
+  @Post('delUser')
+  @ApiOperation({
+    summary: '删除用户',
+  })
+  @HttpCode(200)
+  async delUser(@Query('id') id :number): Promise<any> {
+    const resData = await this.userService.delUser(id);
+    return resData;
+  }
+  @Get('getUserList')
+  @ApiOperation({
+    summary: '查询用户列表',
+  })
+  async getUserList(): Promise<UserInterface[]> {
+    const resData = await this.userService.getUserList();
+    return resData;
   }
 }

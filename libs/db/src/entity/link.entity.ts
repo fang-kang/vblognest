@@ -18,7 +18,7 @@ export class Link {
 
   @Column({
     type: 'text',
-    comment: '网站名名',
+    comment: '网站站名',
     nullable: false,
   })
   siteName: string;
@@ -36,6 +36,13 @@ export class Link {
     nullable: false,
   })
   siteHead: string;
+
+  @Column({
+    type: 'text',
+    comment: '网站简介',
+    nullable: false,
+  })
+  siteInfo: string;
 
   @Column({
     type: 'int',

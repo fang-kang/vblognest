@@ -1,12 +1,18 @@
+/* eslint-disable prettier/prettier */
 import { LinkService } from './link.service';
-import { Controller, HttpCode, Body, Post ,Get} from '@nestjs/common';
+import { Controller, HttpCode, Body, Post, Get } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { LinkCreateDto, LinkEditDto, LinkDelDto, LinkListDto } from './dto/link.dto';
+import {
+  LinkCreateDto,
+  LinkEditDto,
+  LinkDelDto,
+  LinkListDto,
+} from './dto/link.dto';
 
 @ApiTags('友情链接')
 @Controller('link')
 export class LinkController {
-  constructor(private readonly linkService: LinkService) { }
+  constructor(private readonly linkService: LinkService) {}
   @Get('getLink')
   @ApiOperation({
     summary: '获取友情链接',
@@ -44,18 +50,18 @@ export class LinkController {
   }
   @Post('getLinkList')
   @ApiOperation({
-    summary: '获取友情链接列表'
+    summary: '获取友情链接列表',
   })
   @HttpCode(200)
   async getLinkList(@Body() params: LinkListDto): Promise<any> {
-    const linkList = await this.linkService.getLinkList(params)
-    const linkCount = await this.linkService.getLinkCount()
+    const list = await this.linkService.getLinkList(params);
+    const total = await this.linkService.getLinkCount();
 
-    let result = {
-      list: linkList,
-      total: linkCount,
-    }
+    const result = {
+      list,
+      total,
+    };
 
-    return result
+    return result;
   }
 }

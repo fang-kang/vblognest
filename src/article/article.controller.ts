@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   ArticleBaseDto,
   ArticleCategoryDto,
@@ -34,7 +35,7 @@ export class ArticleController {
   @Post('addArtile')
   @HttpCode(200)
   async addArtile(@Body() body: ArticleBaseDto): Promise<any> {
-    return this.articleService.addArticle(body);
+    return await this.articleService.addArticle(body);
   }
   @ApiOperation({
     summary: '修改文章',
@@ -42,28 +43,28 @@ export class ArticleController {
   @Post('editArtile')
   @HttpCode(200)
   async editArtile(@Body() body: ArticleEditDto): Promise<any> {
-    return this.articleService.editArticle(body);
+    return await this.articleService.editArticle(body);
   }
   @ApiOperation({
     summary: '查询文章详情',
   })
   @Get('getDetail/:id')
   async getDetail(@Query('id') id: number): Promise<any> {
-    return this.articleService.getDetail(id);
+    return await this.articleService.getDetail(id);
   }
   @ApiOperation({
     summary: '查询文章数量',
   })
   @Get('getArticleCount')
   async getArticleCount(): Promise<number> {
-    return this.articleService.getArtCount();
+    return await this.articleService.getArtCount();
   }
   @ApiOperation({
     summary: '删除文章',
   })
   @Post('delArticle/:id')
   async delArticle(@Query('id') id: number): Promise<any> {
-    return this.articleService.delArticle(id);
+    return await this.articleService.delArticle(id);
   }
   @Post('getArticleList')
   @ApiOperation({

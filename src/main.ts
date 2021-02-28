@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { NestFactory } from '@nestjs/core';
 import * as rateLimit from 'express-rate-limit';
 import { AppModule } from './app.module';

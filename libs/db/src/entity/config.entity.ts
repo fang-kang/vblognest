@@ -36,4 +36,54 @@ export class Config {
     nullable: false,
   })
   psr: string;
+
+  @Column({
+    type: 'text',
+    comment: '博主头像',
+    nullable: false,
+  })
+  avatar: string;
+
+  @Column({
+    type: 'text',
+    comment: '博主姓名',
+    nullable: false,
+  })
+  name: string;
+
+  @Column({
+    type: 'text',
+    comment: 'logo',
+    nullable: false,
+  })
+  logo: string;
+
+  @Column({
+    type: 'text',
+    comment: '备用字段1',
+    nullable: false,
+  })
+  ext1: string;
+  
+  @Column({
+    type: 'text',
+    comment: '备用字段2',
+    nullable: false,
+  })
+  ext2: string;
+
+  @Column({
+    type: 'text',
+    comment: '备用字段3',
+    nullable: false,
+  })
+  ext3: string;
+
+  @Column({
+    type: 'bigint',
+    comment: '创建时间',
+    nullable: false,
+    default: new Date().getTime(),
+  })
+  cdate: number;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { UserInterface } from './interface/user.interface';
 import { UserBaseDto, UserUpdateDto } from './dto/user.dto';
 import { BadRequestException, Injectable } from '@nestjs/common';
@@ -93,4 +94,30 @@ export class UserService {
       throw new BadRequestException('用户已存在');
     }
   }
+  /*
+   *@Description: 删除用户
+   *@Email:1793980864@qq.com
+   *@Author: fk
+   *@Date: 2021-02-28 15:43:02
+  */
+ async delUser(id :number): Promise<any>{
+  const data = await this.userRepository.findOne({ id });
+  if(!data){
+    throw new CustomException('查询错误');
+  }
+  return this.userRepository.remove(data).then(()=>{
+    return '删除成功'
+  }).catch(()=>{
+    throw new CustomException('操作失败');
+  })
+ }
+ /*
+  *@Description: 查询用户列表
+  *@Email:1793980864@qq.com
+  *@Author: fk
+  *@Date: 2021-02-28 15:47:38
+ */
+ async getUserList():Promise<UserInterface[]>{
+   return await this.userRepository.find()
+ }
 }

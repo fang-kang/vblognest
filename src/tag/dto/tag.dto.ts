@@ -8,3 +8,27 @@ export class TagBaseDto {
   @ApiProperty()
   tagname: string;
 }
+export class TagListDto {
+  @ApiProperty({
+    example: 1
+  })
+  currentPage: number;
+  @ApiProperty({
+    example: 10
+  })
+  limit: number
+}
+export class TagEditDto extends TagBaseDto {
+  @IsNotEmpty({
+    message: 'id不能为空'
+  })
+  @ApiProperty()
+  id: number;
+}
+export class TagDelDto {
+  @IsNotEmpty({
+    message: 'id不能为空'
+  })
+  @ApiProperty()
+  id: number;
+}

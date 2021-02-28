@@ -34,6 +34,7 @@
     "class-transformer": "^0.3.2",
     "class-validator": "^0.13.1",
     "express-rate-limit": "^5.2.3",
+    "htmlparser2": "^6.0.0",
     "jwt": "^0.2.0",
     "md5": "^2.3.0",
     "mysql": "^2.18.1",

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   ArticleBaseDto,
   ArticleCategoryDto,
@@ -17,13 +18,12 @@ export class ArticleService {
     private readonly articleRepository: Repository<Article>,
   ) {}
 
-  /**
-   *
-   * 添加文章
-   * @param {ArticleBaseDto} params
-   * @return {*}  {Promise<any>}
-   * @memberof ArticleService
-   */
+  /*
+   *@Description: 添加文章
+   *@Email:1793980864@qq.com
+   *@Author: fk
+   *@Date: 2021-02-28 15:17:09
+  */
   async addArticle(params: ArticleBaseDto): Promise<any> {
     const currentTime = new Date().getTime();
     const newArticle = new Article();
@@ -50,13 +50,12 @@ export class ArticleService {
       });
   }
 
-  /**
-   *
-   * 编辑文章
-   * @param {ArticleBaseDto} params
-   * @return {*}  {Promise<any>}
-   * @memberof ArticleService
-   */
+  /*
+   *@Description: 编辑文章
+   *@Email:1793980864@qq.com
+   *@Author: fk
+   *@Date: 2021-02-28 15:17:22
+  */
   async editArticle(params: ArticleBaseDto): Promise<any> {
     const currentTime = new Date().getTime();
     const id = params.id;
@@ -83,13 +82,12 @@ export class ArticleService {
       });
   }
 
-  /**
-   *
-   * 获取文章详情
-   * @param {number} id
-   * @return {*}  {Promise<any>}
-   * @memberof ArticleService
-   */
+  /*
+   *@Description: 获取文章详情
+   *@Email:1793980864@qq.com
+   *@Author: fk
+   *@Date: 2021-02-28 15:17:30
+  */
   async getDetail(id: number): Promise<any> {
     const data = await this.articleRepository.findOne({ id });
     if (!data) {
@@ -98,25 +96,24 @@ export class ArticleService {
     return data;
   }
 
-  /**
-   *
-   * 获取文章数量
-   * @return {*}  {Promise<number>}
-   * @memberof ArticleService
-   */
+  /*
+   *@Description: 获取文章数量
+   *@Email:1793980864@qq.com
+   *@Author: fk
+   *@Date: 2021-02-28 15:17:39
+  */
   async getArtCount(): Promise<number> {
     return await this.articleRepository
       .createQueryBuilder('article')
       .getCount();
   }
 
-  /**
-   *
-   * 删除文章
-   * @param {number} id
-   * @return {*}  {Promise<any>}
-   * @memberof ArticleService
-   */
+  /*
+   *@Description: 删除文章
+   *@Email:1793980864@qq.com
+   *@Author: fk
+   *@Date: 2021-02-28 15:17:53
+  */
   async delArticle(id: number): Promise<any> {
     const data = await this.articleRepository.findOne({ id });
     if (!data) {
@@ -132,13 +129,12 @@ export class ArticleService {
       });
   }
 
-  /**
-   *
-   * 获取文章列表
-   * @param {ArticleListDto} params
-   * @return {*}  {Promise<any>}
-   * @memberof ArticleService
-   */
+  /*
+   *@Description: 获取文章列表
+   *@Email:1793980864@qq.com
+   *@Author: fk
+   *@Date: 2021-02-28 15:18:03
+  */
   async getArtList(params: ArticleListDto): Promise<any> {
     const artList = await this.articleRepository.query(`
     select
@@ -161,12 +157,12 @@ export class ArticleService {
     return artList;
   }
 
-  /**
-   * 获取文章详情 *（加阅读量）
-   * @param {number} id
-   * @return {*}  {Promise<any>}
-   * @memberof ArticleService
-   */
+  /*
+   *@Description: 获取文章详情（加阅读量）
+   *@Email:1793980864@qq.com
+   *@Author: fk
+   *@Date: 2021-02-28 15:18:12
+  */
   async getArticleDetail(id: number): Promise<any> {
     const sqlQuery = await this.articleRepository.query(`
         select A.id, A.artTitle, A.abstract, A.artDiscuss,
@@ -200,12 +196,12 @@ export class ArticleService {
     }
   }
 
-  /**
-   *
-   * 获取热门文章
-   * @return {*}  {Promise<any>}
-   * @memberof ArticleService
-   */
+  /*
+   *@Description: 获取热门文章
+   *@Email:1793980864@qq.com
+   *@Author: fk
+   *@Date: 2021-02-28 15:18:29
+  */
   async getHotArticleList(): Promise<any> {
     const artList = await this.articleRepository
       .createQueryBuilder('article')
@@ -216,12 +212,12 @@ export class ArticleService {
     return artList;
   }
 
-  /**
-   *
-   * 归档
-   * @return {*}  {Promise<any>}
-   * @memberof ArticleService
-   */
+  /*
+   *@Description: 归档
+   *@Email:1793980864@qq.com
+   *@Author: fk
+   *@Date: 2021-02-28 15:18:39
+  */
   async getArchive(): Promise<any> {
     const archiveList = await this.articleRepository.query(`
         select A.id, A.artTitle, A.abstract,
@@ -266,6 +262,12 @@ export class ArticleService {
     };
     return result;
   }
+  /*
+   *@Description: 获取全部文章列表
+   *@Email:1793980864@qq.com
+   *@Author: fk
+   *@Date: 2021-02-28 15:18:55
+  */
   async getArticleListAll(params: ArticleListDto): Promise<any> {
     const artList = await this.articleRepository.query(`
         select
@@ -295,6 +297,12 @@ export class ArticleService {
     };
     return result;
   }
+  /*
+   *@Description: 根据关键词获取文章列表
+   *@Email:1793980864@qq.com
+   *@Author: fk
+   *@Date: 2021-02-28 15:19:06
+  */
   async getArtListByKeywords(params: ArticleSearchDto): Promise<any> {
     const artListByCategory = await this.articleRepository.query(`
         select
@@ -337,6 +345,12 @@ export class ArticleService {
     };
     return result;
   }
+  /*
+   *@Description: 根据分类获取文章列表
+   *@Email:1793980864@qq.com
+   *@Author: fk
+   *@Date: 2021-02-28 15:19:19
+  */
   async getArtListByCategory(params: ArticleCategoryDto): Promise<any> {
     const artListByCategory = await this.articleRepository.query(`
         select
@@ -365,6 +379,12 @@ export class ArticleService {
     };
     return result;
   }
+  /*
+   *@Description: 根据标签获取文章列表
+   *@Email:1793980864@qq.com
+   *@Author: fk
+   *@Date: 2021-02-28 15:19:33
+  */
   async getArtListByTag(params: ArticleTagDto): Promise<any> {
     const artListByTag = await this.articleRepository.query(`
         select

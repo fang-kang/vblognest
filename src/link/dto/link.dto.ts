@@ -20,6 +20,8 @@ export class LinkCreateDto {
   siteUrl: string;
   @ApiProperty()
   siteHead: string;
+  @ApiProperty()
+  siteInfo: string;
 }
 export class LinkListDto {
   @ApiProperty({

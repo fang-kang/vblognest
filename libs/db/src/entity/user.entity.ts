@@ -39,6 +39,14 @@ export class User {
     nickname: string
 
     @Column({
+        type: "int",
+        comment: '用户性别 1男 2女 3未知',
+        nullable: true,
+        default: 1
+    })
+    sex: number
+
+    @Column({
         type: "text",
         comment: '用户头像',
         nullable: true,
