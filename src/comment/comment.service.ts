@@ -4,6 +4,7 @@ import {
   CommentAddDto,
   CommentReplyDto,
   CommentArtDto,
+  CommentDelDto,
 } from './dto/comment.dto';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -98,8 +99,14 @@ export class CommentService {
         throw new CustomException('操作失败');
       });
   }
-  async deleteLink(id: number): Promise<any> {
-    const data = await this.commentRepository.findOne(id);
+  /*
+   *@Description:删除评论
+   *@Email:1793980864@qq.com
+   *@Author: fk
+   *@Date: 2021-02-28 21:37:46
+   */
+  async deleteLink(p: CommentDelDto): Promise<any> {
+    const data = await this.commentRepository.findOne(p.id);
     if (!data) {
       throw new CustomException('暂无数据');
     }

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { UserModule } from './user/user.module';
 import { DbModule } from '@libs/db/db.module';

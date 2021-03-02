@@ -5,6 +5,7 @@ import {
   CommentAddDto,
   CommentReplyDto,
   CommentArtDto,
+  CommentDelDto,
 } from './dto/comment.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CommentService } from './comment.service';
@@ -49,8 +50,8 @@ export class CommentController {
     summary: '删除评论',
   })
   @HttpCode(200)
-  async deleteLink(@Body() id: number): Promise<any> {
-    const delInfo = await this.commentService.deleteLink(id);
+  async deleteLink(@Body() p: CommentDelDto): Promise<any> {
+    const delInfo = await this.commentService.deleteLink(p);
     return delInfo;
   }
   @Post('addComment')

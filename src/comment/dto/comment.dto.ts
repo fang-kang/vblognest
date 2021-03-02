@@ -190,3 +190,10 @@ export class CommentReplyDto {
     })
     oldCdate: number;
 }
+export class CommentDelDto{
+    @ApiProperty()
+    @IsNotEmpty({
+        message: '文章id不能为空'
+    })
+    id: number;
+}
