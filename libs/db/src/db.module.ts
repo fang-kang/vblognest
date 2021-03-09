@@ -13,8 +13,8 @@ import { Config } from '@libs/db/entity/config.entity';
 const entityArr = [User, Article, Link, Tag, Comment, Category, Config];
 
 const entity = TypeOrmModule.forFeature(entityArr);
-process.env.NODE_ENV = 'production'
-// process.env.NODE_ENV = 'development'
+// process.env.NODE_ENV = 'production'
+process.env.NODE_ENV = 'development'
 const devMode = process.env.NODE_ENV === 'development'
 console.log(devMode,'=========')
 @Global()
@@ -31,7 +31,7 @@ console.log(devMode,'=========')
           host: 'localhost',
           port: 3306,
           username: devMode?'root':'vblognest',
-          password: devMode?'':'vblognest',
+          password: devMode?'123456':'vblognest',
           database: 'vblognest',
           entities: entityArr,
           // entities: ["dist/**/*.entity{.ts,.js}"],

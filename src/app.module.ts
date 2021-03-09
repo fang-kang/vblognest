@@ -9,6 +9,7 @@ import { ArticleModule } from './article/article.module';
 import { LinkModule } from './link/link.module';
 import { SiteConfigModule } from './site-config/site-config.module';
 import { CommentModule } from './comment/comment.module';
+import { FileModule } from './file/file.module';
 @Module({
   imports: [
     UserModule,
@@ -20,6 +21,7 @@ import { CommentModule } from './comment/comment.module';
     LinkModule,
     SiteConfigModule,
     CommentModule,
+    FileModule,
   ],
   controllers: [],
   providers: [],
