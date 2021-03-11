@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { SiteConfigInterface } from './interface/siteConfig.interface';
 import { ConfigBaseDto, ConfigEditDto } from './dto/siteConfig.dto';
 import { CustomException } from '@common/common/common/http.decoration';

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ApiBody, ApiConsumes, ApiOperation, ApiTags } from '@nestjs/swagger';
 import {
   Controller,
@@ -10,6 +11,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { FileService } from './file.service';
 import { FileUploadDto } from './dto/file.dto';
 import { join } from 'path';
+import config from '@common/common/config';
 @ApiTags('文件上传')
 @Controller('file')
 export class FileController {
@@ -26,11 +28,10 @@ export class FileController {
   })
   @UseInterceptors(FileInterceptor('file'))
   async UploadedFile(@UploadedFile() file) {
-    const devMode = process.env.NODE_ENV === 'development';
     // 这里的 file 已经是保存后的文件信息了，在此处做数据库处理，或者直接返回保存后的文件信息
     // const buckets =await this.storageService.getBuckets()
     console.log(file);
-    const a = devMode ? 'http://localhost:3001/' : 'http://8.130.31.13:3001/';
+    const a = config.APP_URL
     const url = a + file.path;
     return url;
   }

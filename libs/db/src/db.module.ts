@@ -9,12 +9,11 @@ import { Tag } from '@libs/db/entity/tag.entity';
 import { Comment } from '@libs/db/entity/comment.entity';
 import { Category } from '@libs/db/entity/category.entity';
 import { Config } from '@libs/db/entity/config.entity';
+import config from '@common/common/config';
 
 const entityArr = [User, Article, Link, Tag, Comment, Category, Config];
 
 const entity = TypeOrmModule.forFeature(entityArr);
-// process.env.NODE_ENV = 'production'
-process.env.NODE_ENV = 'development'
 const devMode = process.env.NODE_ENV === 'development'
 console.log(devMode,'=========')
 @Global()
@@ -30,9 +29,9 @@ console.log(devMode,'=========')
           type: 'mysql',
           host: 'localhost',
           port: 3306,
-          username: devMode?'root':'vblognest',
-          password: devMode?'123456':'vblognest',
-          database: 'vblognest',
+          username: config.DATABASE.user,
+          password: config.DATABASE.password,
+          database: config.DATABASE.database,
           entities: entityArr,
           // entities: ["dist/**/*.entity{.ts,.js}"],
           synchronize: true,

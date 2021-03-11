@@ -11,6 +11,7 @@ import { TransformInterceptor } from '@common/common/interface/transform.interce
 import { ValidationPipe } from '@common/common/pipes/validation.pipe';
 import * as express from 'express';
 import { join } from 'path';
+import config from '@common/common/config';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.useGlobalPipes(new ValidationPipe()); //开启一个全局验证管道
@@ -41,6 +42,6 @@ async function bootstrap() {
       max: 100, // limit each IP to 100 requests per windowMs
     }),
   );
-  await app.listen(3001);
+  await app.listen(config.PORT);
 }
 bootstrap();

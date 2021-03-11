@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ConfigBaseDto, ConfigEditDto } from './dto/siteConfig.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { SiteConfigService } from './site-config.service';

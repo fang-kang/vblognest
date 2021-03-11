@@ -27,7 +27,7 @@ export class User {
         type: "text",
         comment: '用户密码',
         select: false,
-        nullable: false
+        nullable: true
     })
     password: string
 

@@ -4,6 +4,7 @@ import { CommonService } from './common.service';
 import { JwtModule } from '@nestjs/jwt';
 import { LocalStrategy } from '@common/common/strategy/local.strategy';
 import { JwtStrategy } from '@common/common/strategy/jwt.strategy';
+import config from './config';
 
 @Global()
 @Module({
@@ -11,8 +12,8 @@ import { JwtStrategy } from '@common/common/strategy/jwt.strategy';
     JwtModule.registerAsync({
       useFactory() {
         return {
-          secret: 'secret',
-          signOptions: { expiresIn: '86400s' }, // token有效期24小时
+          secret: config.TOKEN.secret,
+          signOptions: { expiresIn: config.TOKEN.expiresIn }, // token有效期24小时
         };
       },
     }),

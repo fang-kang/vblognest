@@ -24,9 +24,9 @@ export class TransformInterceptor implements NestInterceptor {
         if (pagination.currentPage && pagination.limit) {
           const isPaging = {
             data: result.list,
-            total: result.total,
-            currentPage: pagination.currentPage,
-            limit: pagination.limit,
+            total: Number(result.total),
+            currentPage: Number(pagination.currentPage),
+            limit: Number(pagination.limit),
           };
           return {
             data: isPaging,

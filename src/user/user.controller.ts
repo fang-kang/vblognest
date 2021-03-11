@@ -2,6 +2,7 @@
 import { UserInterface } from './interface/user.interface';
 import { UserBaseDto, UserUpdateDto } from './dto/user.dto';
 import { UserService } from './user.service';
+import { CommonListDto } from './../../libs/common/src/dto/common.dto';
 import {
   Body,
   Controller,
@@ -26,7 +27,7 @@ export class UserController {
   constructor(
     private readonly jwtService: JwtService,
     private readonly userService: UserService,
-  ) {}
+  ) { }
   @Post('register')
   @ApiOperation({
     summary: '注册',
@@ -92,7 +93,7 @@ export class UserController {
     summary: '删除用户',
   })
   @HttpCode(200)
-  async delUser(@Query('id') id :number): Promise<any> {
+  async delUser(@Query('id') id: number): Promise<any> {
     const resData = await this.userService.delUser(id);
     return resData;
   }
@@ -102,6 +103,15 @@ export class UserController {
   })
   async getUserList(): Promise<UserInterface[]> {
     const resData = await this.userService.getUserList();
+    return resData;
+  }
+  @Post('getUserListByPage')
+  @HttpCode(200)
+  @ApiOperation({
+    summary: '查询用户列表(分页)',
+  })
+  async getUserListByPage(@Body() p: CommonListDto): Promise<any> {
+    const resData = await this.userService.getUserListByPage(p);
     return resData;
   }
 }
