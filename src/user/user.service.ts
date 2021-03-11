@@ -6,7 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '@libs/db/entity/user.entity';
 import { Repository } from 'typeorm';
 import { CustomException } from '@common/common/common/http.decoration';
-import { CommonListDto } from '@common/common/dto/common.dto';
+import { CommonIdDto, CommonListDto } from '@common/common/dto/common.dto';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const md5 = require('md5');
 @Injectable()
@@ -97,8 +97,8 @@ export class UserService {
    *@Author: fk
    *@Date: 2021-02-28 15:43:02
   */
-  async delUser(id: number): Promise<any> {
-    const data = await this.userRepository.findOne(id);
+  async delUser(p :CommonIdDto): Promise<any> {
+    const data = await this.userRepository.findOne(p.id);
     if (!data) {
       throw new CustomException('查询错误');
     }

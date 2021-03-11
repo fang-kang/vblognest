@@ -2,7 +2,7 @@
 import { UserInterface } from './interface/user.interface';
 import { UserBaseDto, UserUpdateDto } from './dto/user.dto';
 import { UserService } from './user.service';
-import { CommonListDto } from './../../libs/common/src/dto/common.dto';
+import { CommonIdDto, CommonListDto } from './../../libs/common/src/dto/common.dto';
 import {
   Body,
   Controller,
@@ -93,8 +93,8 @@ export class UserController {
     summary: '删除用户',
   })
   @HttpCode(200)
-  async delUser(@Query('id') id: number): Promise<any> {
-    const resData = await this.userService.delUser(id);
+  async delUser(@Body() p: CommonIdDto): Promise<any> {
+    const resData = await this.userService.delUser(p);
     return resData;
   }
   @Get('getUserList')
