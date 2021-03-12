@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { TagBaseDto, TagEditDto ,TagListDto} from './dto/tag.dto';
+import { CommonIdDto } from '@common/common/dto/common.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { TagService } from './tag.service';
 import { Body, Controller, Get, HttpCode, Post, Query } from '@nestjs/common';
@@ -30,13 +31,13 @@ export class TagController {
   async getTagList(): Promise<TagInterface[]> {
     return await this.tagService.getTagList();
   }
-  @Post('delTag/:id')
+  @Post('delTag')
   @HttpCode(200)
   @ApiOperation({
     summary: '删除标签',
   })
-  async delTag(@Query('id') id :number): Promise<any> {
-    return await this.tagService.delTag(id);
+  async delTag(@Body() p :CommonIdDto): Promise<any> {
+    return await this.tagService.delTag(p);
   }
   @Post('editTag')
   @HttpCode(200)

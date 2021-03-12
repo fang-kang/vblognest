@@ -6,7 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Tag } from './../../libs/db/src/entity/tag.entity';
 import { Injectable } from '@nestjs/common';
-
+import { CommonIdDto } from '@common/common/dto/common.dto';
 @Injectable()
 export class TagService {
   constructor(
@@ -66,8 +66,8 @@ export class TagService {
    *@Author: fk
    *@Date: 2021-02-28 15:11:12
   */
-  async delTag(id: number): Promise<any> {
-    const data = await this.tagRepository.findOne(id);
+  async delTag(p :CommonIdDto): Promise<any> {
+    const data = await this.tagRepository.findOne(p.id);
     if (!data) {
       throw new CustomException('没有数据');
     }

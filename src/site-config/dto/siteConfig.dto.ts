@@ -12,11 +12,26 @@ export class ConfigBaseDto {
     })
     @ApiProperty()
     psr: string;
+	
+	@ApiProperty()
+	avatar:string;
+	
+	@ApiProperty()
+	name:string;
+	
+	@ApiProperty()
+	logo:string;
+	
+	@ApiProperty()
+	ext1:string;
+	
+	@ApiProperty()
+	ext2:string;
+	
+	@ApiProperty()
+	ext3:string;
 }
 export class ConfigEditDto extends ConfigBaseDto {
-    @IsNotEmpty({
-        message: 'id不能为空'
-    })
     @ApiProperty()
     id: number;
 }

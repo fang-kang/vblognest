@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty } from 'class-validator';
 
 export class UserBaseDto {
    @IsNotEmpty({
@@ -8,7 +8,6 @@ export class UserBaseDto {
    })
    @ApiProperty()
    username: string;
-   @IsString()
 
    // @IsNotEmpty({
    //    message: '密码不能为空'
@@ -31,7 +30,6 @@ export class UserUpdateDto {
    signature: string;
    @ApiProperty()
    username: string;
-   @IsString()
 
    @ApiProperty()
    password: string;

@@ -56,7 +56,7 @@ export class UserService {
       throw new CustomException('暂无该用户');
     }
     return await this.userRepository
-      .save(params)
+      .update(params.id,params)
       .then(() => {
         return params;
       })
