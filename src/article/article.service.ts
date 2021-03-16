@@ -2,6 +2,7 @@
 import {
   ArticleBaseDto,
   ArticleCategoryDto,
+  ArticleDelDto,
   ArticleListDto,
   ArticleSearchDto,
   ArticleTagDto,
@@ -16,7 +17,7 @@ export class ArticleService {
   constructor(
     @InjectRepository(Article)
     private readonly articleRepository: Repository<Article>,
-  ) {}
+  ) { }
 
   /*
    *@Description: 添加文章
@@ -114,13 +115,13 @@ export class ArticleService {
    *@Author: fk
    *@Date: 2021-02-28 15:17:53
   */
-  async delArticle(id: number): Promise<any> {
-    const data = await this.articleRepository.findOne({ id });
+  async delArticle(p: ArticleDelDto): Promise<any> {
+    const data = await this.articleRepository.findOne(p.id);
     if (!data) {
       throw new CustomException('操作失败');
     }
     return await this.articleRepository
-      .delete({ id })
+      .delete(p.id)
       .then(() => {
         '删除成功';
       })

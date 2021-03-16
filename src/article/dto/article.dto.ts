@@ -67,3 +67,9 @@ export class ArticleTagDto extends ArticleListDto{
   })
   tagid: string;
 }
+export class ArticleDelDto{
+  @ApiProperty({
+    example:1
+  })
+  id: string;
+}

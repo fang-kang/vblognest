@@ -2,6 +2,7 @@
 import {
   ArticleBaseDto,
   ArticleCategoryDto,
+  ArticleDelDto,
   ArticleEditDto,
   ArticleListDto,
   ArticleSearchDto,
@@ -62,22 +63,23 @@ export class ArticleController {
   @ApiOperation({
     summary: '删除文章',
   })
-  @Post('delArticle/:id')
-  async delArticle(@Query('id') id: number): Promise<any> {
-    return await this.articleService.delArticle(id);
+  @HttpCode(200)
+  @Post('delArticle')
+  async delArticle(@Body() p :ArticleDelDto): Promise<any> {
+    return await this.articleService.delArticle(p);
   }
   @Post('getArticleList')
   @ApiOperation({
     summary: '获取文章列表',
   })
   @HttpCode(200)
-  @UseGuards(AuthGuard('jwt'))
-  @ApiBearerAuth()
-  @ApiHeader({
-    description: 'token',
-    name: 'token',
-    required: true,
-  })
+  // @UseGuards(AuthGuard('jwt'))
+  // @ApiBearerAuth()
+  // @ApiHeader({
+  //   description: 'token',
+  //   name: 'token',
+  //   required: true,
+  // })
   async getArticleList(@Body() params: ArticleListDto): Promise<any> {
     const artList = await this.articleService.getArtList(params);
     const artCount = await this.articleService.getArtCount();
