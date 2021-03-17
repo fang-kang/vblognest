@@ -305,12 +305,13 @@ export class ArticleService {
    *@Date: 2021-02-28 15:19:06
   */
   async getArtListByKeywords(params: ArticleSearchDto): Promise<any> {
+    // FROM_UNIXTIME(A.cdate/1000, '%Y-%m-%d %H:%i') as cdate,
     const artListByCategory = await this.articleRepository.query(`
         select
         A.id, A.artTitle,
         (SELECT categoryname FROM category where status = 0 and FIND_IN_SET(A.category, id) ) as category,
         GROUP_CONCAT(T.tagname) as tag,
-        FROM_UNIXTIME(A.cdate/1000, '%Y-%m-%d %H:%i') as cdate,
+        A.cdate,A.editdate,
         A.abstract, A.thumbnail, A.pv,
         (SELECT COUNT(*) FROM comment where artId = A.id ) as discuss
         from article as A
