@@ -234,7 +234,7 @@ export class CommentService {
         limit ${(params.currentPage - 1) * params.limit}, ${params.limit};
     `);
     const commentCount = await this.commentRepository.query(`
-        select count(*) as total from comment where artId = ${params.artId} and isChecked = 1 ;
+        select count(*) as total from comment where artId = ${params.artId} and isChecked = 0 ;
    `);
     const result = {
       list: commentList,

@@ -166,9 +166,9 @@ export class ArticleService {
   */
   async getArticleDetail(id :number): Promise<any> {
     const sqlQuery = await this.articleRepository.query(`
-        select A.id, A.artTitle, A.abstract, A.artDiscuss,
-        (SELECT categoryname FROM category where status = 0 and FIND_IN_SET(A.category, id) ) as category,
-        GROUP_CONCAT(T.tagname) as tag,
+        select A.id, A.artTitle, A.abstract, A.artDiscuss,A.category,A.tag,
+        (SELECT categoryname FROM category where status = 0 and FIND_IN_SET(A.category, id) ) as categoryname,
+        GROUP_CONCAT(T.tagname) as tagname,
         A.thumbnail, A.pv,
         (SELECT COUNT(*) FROM comment where artId = A.id ) as discuss,
          A.content,
