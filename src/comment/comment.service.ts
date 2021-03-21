@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   CommentListDto,
   CommentCheckDto,
@@ -129,12 +130,12 @@ export class CommentService {
     const newComment = new Comment();
     const cdate = new Date().getTime();
     const from_uavatar = setAvatar(params.email);
-    newComment.artId = Number(FilterContent(params.artId));
-    newComment.content = FilterContent(params.content);
-    newComment.from_uname = FilterContent(params.nickname);
-    newComment.from_uemail = FilterContent(params.email);
-    newComment.from_uavatar = FilterContent(from_uavatar);
-    newComment.from_uweb = FilterContent(params.webUrl);
+    newComment.artId = Number(params.artId);
+    newComment.content = params.content
+    newComment.from_uname = params.nickname
+    newComment.from_uemail = params.email
+    newComment.from_uavatar = from_uavatar
+    newComment.from_uweb = params.webUrl
     newComment.cdate = cdate;
     newComment.to_uname = null;
     newComment.to_uavatar = null;
@@ -177,19 +178,19 @@ export class CommentService {
     const newComment = new Comment();
     const cdate = new Date().getTime();
     const from_uavatar = setAvatar(params.email);
-    newComment.artId = Number(FilterContent(params.artId));
-    newComment.content = FilterContent(params.content);
-    newComment.from_uname = FilterContent(params.nickname);
-    newComment.from_uemail = FilterContent(params.email);
-    newComment.from_uavatar = FilterContent(from_uavatar);
-    newComment.from_uweb = FilterContent(params.webUrl);
+    newComment.artId = Number(params.artId);
+    newComment.content = params.content;
+    newComment.from_uname = params.nickname;
+    newComment.from_uemail = params.email;
+    newComment.from_uavatar = from_uavatar;
+    newComment.from_uweb = params.webUrl;
     newComment.cdate = cdate;
-    newComment.to_uname = FilterContent(params.touname);
-    newComment.to_uavatar = FilterContent(params.touavatar);
-    newComment.to_uemail = FilterContent(params.touemail);
-    newComment.to_uweb = FilterContent(params.touweb);
-    newComment.oldContent = FilterContent(params.oldContent);
-    newComment.oldCdate = Number(FilterContent(params.oldCdate));
+    newComment.to_uname = params.touname;
+    newComment.to_uavatar = params.touavatar;
+    newComment.to_uemail = params.touemail;
+    newComment.to_uweb = params.touweb;
+    newComment.oldContent = params.oldContent;
+    newComment.oldCdate = Number(params.oldCdate);
     newComment.artURL = params.articleURL;
     return await this.commentRepository
       .save(newComment)
@@ -228,7 +229,7 @@ export class CommentService {
         to_uname,to_uavatar,to_uweb,to_uemail,
         FROM_UNIXTIME(cdate/1000,'%Y-%m-%d  %H:%i') as cdate ,
         FROM_UNIXTIME(oldCdate/1000,'%Y-%m-%d  %H:%i') as oldCdate
-        from comment where artId = ${params.artId} and isChecked = 1
+        from comment where artId = ${params.artId} and isChecked = 0
         ORDER BY cdate desc
         limit ${(params.currentPage - 1) * params.limit}, ${params.limit};
     `);

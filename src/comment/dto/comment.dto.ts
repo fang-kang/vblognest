@@ -15,12 +15,12 @@ export class CommentListDto {
 
 export class CommentArtDto extends CommentListDto{
     @ApiProperty({
-        example: 1612851256810
+        example: '1612851256810'
     })
     @IsNotEmpty({
         message: '文章id不能为空'
     })
-    artId: number;
+    artId: string;
 }
 
 
@@ -48,12 +48,12 @@ export class CommentAddDto {
     email: string;
 
     @ApiProperty({
-        example: 1612851256810
+        example: '1612851256810'
     })
     @IsNotEmpty({
         message: '文章id不能为空'
     })
-    artId: number;
+    artId: string;
 
     @IsNotEmpty({
         message: '评论内容不能为空'
@@ -100,12 +100,12 @@ export class CommentReplyDto {
     email: string;
 
     @ApiProperty({
-        example: 1612851256810
+        example: '1612851256810'
     })
     @IsNotEmpty({
         message: '文章id不能为空'
     })
-    artId: number;
+    artId: string;
 
     @IsNotEmpty({
         message: '评论内容不能为空'
@@ -167,9 +167,6 @@ export class CommentReplyDto {
 
     @ApiProperty({
         example: 'www.baidu.com'
-    })
-    @IsNotEmpty({
-        message: '被回复者网址不能为空'
     })
     touweb: string;
 

@@ -10,8 +10,6 @@ import {
 } from './dto/article.dto';
 import { ArticleService } from './article.service';
 import {
-  ApiBearerAuth,
-  ApiHeader,
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
@@ -21,10 +19,9 @@ import {
   Get,
   HttpCode,
   Post,
-  Query,
-  UseGuards,
+  Query
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+// import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('文章')
 @Controller('article')
@@ -49,8 +46,8 @@ export class ArticleController {
   @ApiOperation({
     summary: '查询文章详情',
   })
-  @Get('getDetail/:id')
-  async getDetail(@Query('id') id: number): Promise<any> {
+  @Get('getDetail')
+  async getDetail(@Query('id') id :number): Promise<any> {
     return await this.articleService.getDetail(id);
   }
   @ApiOperation({
@@ -91,12 +88,12 @@ export class ArticleController {
 
     return result;
   }
-  @Post('getArticleDetail/:id')
+  @Get('getArticleDetail')
   @ApiOperation({
     summary: '获取文章详情(加阅读量)',
   })
   @HttpCode(200)
-  async getArticleDetail(@Query('id') id: number): Promise<any> {
+  async getArticleDetail(@Query('id') id :number): Promise<any> {
     const artDetail = await this.articleService.getArticleDetail(id);
     return artDetail;
   }

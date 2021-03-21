@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { CommentInterface } from './interface/comment.interface';
 import {
   CommentListDto,
@@ -73,7 +74,7 @@ export class CommentController {
     return addComment;
   }
 
-  @Post('getComment')
+  @Post('getArtComment')
   @ApiOperation({
     summary: '获取文章评论列表',
   })

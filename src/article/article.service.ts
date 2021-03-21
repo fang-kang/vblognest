@@ -89,8 +89,8 @@ export class ArticleService {
    *@Author: fk
    *@Date: 2021-02-28 15:17:30
   */
-  async getDetail(id: number): Promise<any> {
-    const data = await this.articleRepository.findOne({ id });
+  async getDetail(id : number): Promise<any> {
+    const data = await this.articleRepository.findOne(id);
     if (!data) {
       throw new CustomException('操作失败');
     }
@@ -164,7 +164,7 @@ export class ArticleService {
    *@Author: fk
    *@Date: 2021-02-28 15:18:12
   */
-  async getArticleDetail(id: number): Promise<any> {
+  async getArticleDetail(id :number): Promise<any> {
     const sqlQuery = await this.articleRepository.query(`
         select A.id, A.artTitle, A.abstract, A.artDiscuss,
         (SELECT categoryname FROM category where status = 0 and FIND_IN_SET(A.category, id) ) as category,
@@ -339,7 +339,6 @@ export class ArticleService {
             abstract like "%${params.keyword}%"
         )
         and status = 0;
-
     `);
     const result = {
       list: artListByCategory,
@@ -373,7 +372,6 @@ export class ArticleService {
     `);
     const artCount = await this.articleRepository.query(`
         SELECT COUNT(*) as total FROM article where status = 0 and FIND_IN_SET('${params.categoryid}', category);
-
     `);
     const result = {
       list: artListByCategory,
@@ -408,7 +406,6 @@ export class ArticleService {
     `);
     const artCount = await this.articleRepository.query(`
         SELECT COUNT(*) as total FROM article where status = 0 and FIND_IN_SET('${params.tagid}', tag);
-
     `);
     const result = {
       list: artListByTag,

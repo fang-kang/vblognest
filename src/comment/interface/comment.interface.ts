@@ -8,7 +8,7 @@
 export interface CommentInterface {
   id: number;
   //文章id
-  artId: number;
+  artId: string;
   //评论内容
   content: any;
   //评论者昵称

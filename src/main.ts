@@ -36,12 +36,12 @@ async function bootstrap() {
   //跨域
   // app.useStaticAssets('public');
   app.enableCors();
-  app.use(
-    rateLimit({
-      windowMs: 10 * 60 * 1000, // 10 minutes
-      max: 100, // limit each IP to 100 requests per windowMs
-    }),
-  );
+  // app.use(
+  //   rateLimit({
+  //     windowMs: 10 * 60 * 1000, // 10 minutes
+  //     max: 100, // limit each IP to 100 requests per windowMs
+  //   }),
+  // );
   await app.listen(config.PORT);
 }
 bootstrap();
