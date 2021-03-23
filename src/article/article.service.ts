@@ -12,6 +12,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Article } from '@libs/db/entity/article.entity';
 import { Repository } from 'typeorm';
 import { CustomException } from '@common/common/common/http.decoration';
+import { ArticleInterface } from './interface/article.interface';
 @Injectable()
 export class ArticleService {
   constructor(
@@ -64,16 +65,9 @@ export class ArticleService {
     if (!data) {
       throw new CustomException('id查询错误');
     }
+    params.editdate = currentTime
     return await this.articleRepository
-      .update(params.id, {
-        artTitle: params.artTitle,
-        abstract: params.abstract,
-        category: params.category,
-        content: params.content,
-        tag: params.tag,
-        thumbnail: params.thumbnail,
-        editdate: currentTime,
-      })
+      .update(params.id, params)
       .then(() => {
         return params;
       })
@@ -89,7 +83,7 @@ export class ArticleService {
    *@Author: fk
    *@Date: 2021-02-28 15:17:30
   */
-  async getDetail(id : number): Promise<any> {
+  async getDetail(id: number): Promise<any> {
     const data = await this.articleRepository.findOne(id);
     if (!data) {
       throw new CustomException('操作失败');
@@ -136,7 +130,7 @@ export class ArticleService {
    *@Author: fk
    *@Date: 2021-02-28 15:18:03
   */
-  async getArtList(params: ArticleListDto): Promise<any> {
+  async getArtList(params: ArticleListDto): Promise<ArticleInterface[]> {
     const artList = await this.articleRepository.query(`
     select
     A.id, A.artTitle, A.abstract, A.artDiscuss,
@@ -155,6 +149,7 @@ export class ArticleService {
     ORDER BY A.cdate desc
     limit ${(params.currentPage - 1) * params.limit}, ${params.limit};
 `);
+    console.log('artList', artList)
     return artList;
   }
 
@@ -164,7 +159,7 @@ export class ArticleService {
    *@Author: fk
    *@Date: 2021-02-28 15:18:12
   */
-  async getArticleDetail(id :number): Promise<any> {
+  async getArticleDetail(id: number): Promise<any> {
     const sqlQuery = await this.articleRepository.query(`
         select A.id, A.artTitle, A.abstract, A.artDiscuss,A.category,A.tag,
         (SELECT categoryname FROM category where status = 0 and FIND_IN_SET(A.category, id) ) as categoryname,

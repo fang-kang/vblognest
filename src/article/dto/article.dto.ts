@@ -40,6 +40,8 @@ export class ArticleEditDto extends ArticleBaseDto{
     message: 'id不能为空',
   })
   id: number;
+  @ApiProperty()
+  cdate: number;
 }
 export class ArticleListDto{
   @ApiProperty({

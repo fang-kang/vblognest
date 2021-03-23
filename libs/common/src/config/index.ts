@@ -13,7 +13,7 @@ const config = {
   DATABASE: {
     database: 'vblognest',
     user: 'root',
-    password: '',
+    password: '123456',
   },
 };
 
