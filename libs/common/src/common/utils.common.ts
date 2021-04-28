@@ -13,11 +13,11 @@ const htmlparser = require('htmlparser2');
  * @param str
  * @constructor
  */
-export function FilterContent(str) {
+export function FilterContent(str: string) {
   let commentTranseRes = '';
   const parser = new htmlparser.Parser(
     {
-      onopentag(name, attribs) {
+      onopentag(name: string) {
         if (
           name === 'script' ||
           name === 'style' ||
@@ -28,10 +28,10 @@ export function FilterContent(str) {
           // alert('小朋友不乖哟，不要乱输入！')
         }
       },
-      ontext(text) {
+      ontext(text: string) {
         commentTranseRes += text;
       },
-      onclosetag(tagname) {
+      onclosetag(tagname: string) {
         if (
           tagname === 'script' ||
           tagname === 'style' ||
@@ -48,10 +48,10 @@ export function FilterContent(str) {
   return commentTranseRes;
 }
 
-export function pad(str) {
+export function pad(str: string) {
   return +str >= 10 ? str : '0' + str;
 }
-export function timestampToTime(timestamp) {
+export function timestampToTime(timestamp: string | number) {
   const dateObj = new Date(+timestamp); // ps, 必须是数字类型，不能是字符串, +运算符把字符串转化为数字，更兼容
   const year = dateObj.getFullYear(); // 获取年，
   const month = dateObj.getMonth() + 1; // 获取月，必须要加1，因为月份是从0开始计算的
@@ -78,7 +78,7 @@ export function timestampToTime(timestamp) {
  * 生成头像
  * @param email
  */
-export function setAvatar(email) {
+export function setAvatar(email: string) {
   let url = 'https://www.gravatar.com/avatar/';
   url += md5(email).toLowerCase();
   url += '?s=80&r=g';
