@@ -14,7 +14,7 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-  ) { }
+  ) {}
 
   /*
    *@Description: 用户注册
@@ -52,11 +52,11 @@ export class UserService {
    */
   async userInfoUpdate(params: UserUpdateDto): Promise<any> {
     const data = await this.userRepository.findOne(params.id);
-    if(!data){
+    if (!data) {
       throw new CustomException('暂无该用户');
     }
     return await this.userRepository
-      .update(params.id,params)
+      .update(params.id, params)
       .then(() => {
         return params;
       })
@@ -96,32 +96,35 @@ export class UserService {
    *@Email:1793980864@qq.com
    *@Author: fk
    *@Date: 2021-02-28 15:43:02
-  */
-  async delUser(p :CommonIdDto): Promise<any> {
+   */
+  async delUser(p: CommonIdDto): Promise<any> {
     const data = await this.userRepository.findOne(p.id);
     if (!data) {
       throw new CustomException('查询错误');
     }
-    return this.userRepository.remove(data).then(() => {
-      return '删除成功'
-    }).catch(() => {
-      throw new CustomException('操作失败');
-    })
+    return this.userRepository
+      .remove(data)
+      .then(() => {
+        return '删除成功';
+      })
+      .catch(() => {
+        throw new CustomException('操作失败');
+      });
   }
   /*
    *@Description: 查询用户列表
    *@Email:1793980864@qq.com
    *@Author: fk
    *@Date: 2021-02-28 15:47:38
-  */
+   */
   async getUserList(): Promise<UserInterface[]> {
-    return await this.userRepository.find()
+    return await this.userRepository.find();
   }
   /*
-  *@Description: 查询用户列表（分页）
-  *@MethodAuthor: fk
-  *@Date: 2021-02-27 12:16:53
-  */
+   *@Description: 查询用户列表（分页）
+   *@MethodAuthor: fk
+   *@Date: 2021-02-27 12:16:53
+   */
   async getUserListByPage(params: CommonListDto): Promise<any> {
     const list = await this.userRepository
       .createQueryBuilder('user')
@@ -129,11 +132,10 @@ export class UserService {
       .take(params.limit)
       .orderBy('user.cdate', 'DESC')
       .getMany();
-      const [,total] = await this.userRepository.findAndCount()
+    const [, total] = await this.userRepository.findAndCount();
     return {
       list,
-      total
-    }
+      total,
+    };
   }
 }
-
