@@ -26,4 +26,4 @@ import { FileModule } from './file/file.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {};
