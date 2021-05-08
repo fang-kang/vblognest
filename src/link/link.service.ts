@@ -23,9 +23,6 @@ export class LinkService {
    *@Date: 2021-02-27 12:16:53
    */
   async getLink(): Promise<any> {
-    // return await this.linkRepository.query(`
-    //     select siteName, siteUrl, siteHead from link;
-    // `);
     return await this.linkRepository.find();
   }
   /*
